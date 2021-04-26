@@ -2,6 +2,7 @@ import { ActionType } from 'typesafe-actions'
 import { takeLatest, call, put, all } from 'redux-saga/effects'
 import * as actions from './actions'
 import api from '../../../Services/api'
+import { AuthTypes } from './types'
 
 export function* singIn( { payload } :  ActionType<typeof actions.singInRequest>) {
     try {
@@ -21,5 +22,5 @@ export function* singIn( { payload } :  ActionType<typeof actions.singInRequest>
 }
 
 export default all([
-    takeLatest('@auth/SING_IN_REQUEST',singIn)
+    takeLatest(AuthTypes.LOAD_REQUEST,singIn)
 ])
