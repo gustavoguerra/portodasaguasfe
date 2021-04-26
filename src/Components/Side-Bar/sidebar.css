@@ -1,0 +1,19 @@
+.title-box {
+    background: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    color: cornsilk;
+}
+.title-box a {
+    padding: 10px 1px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.button-icon {
+    background-color: blue;
+    cursor: pointer;
+    width: 2vw;
+    border: none;
+}

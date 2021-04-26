@@ -1,0 +1,44 @@
+.box-login {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: red;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.box-login .box-component {
+    background-color: #ffffff;
+    box-shadow: 4px 4px 4px 1px black; 
+
+/*     
+    border-style: solid;
+    border-color: blue; */
+}
+
+.input-label {
+    margin-top: 5px;
+}
+
+.box-login .input-label label{
+    display: block;
+}
+.box-login .input-label input{
+    height: 25px;
+    border-radius: 5px;
+    
+}
+
+.box-login button {
+    margin-top: 10px;
+    width: 175px;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 9px;
+}

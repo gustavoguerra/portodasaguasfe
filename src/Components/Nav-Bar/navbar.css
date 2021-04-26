@@ -1,0 +1,16 @@
+.navbar-border{
+    height: 6vh;
+    width: 100vw;
+    display: flex;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: left;  
+    background-color: blue;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.52);
+}
+
+.side-bar {  
+    flex-direction: row;
+    margin: 10px 10px;
+    justify-content: left;  
+}
