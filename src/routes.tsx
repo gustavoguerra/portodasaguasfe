@@ -7,7 +7,7 @@ import './CSS/layout.css'
 export default function Routes() {
     return (
         <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
             {/* <div className="box-container">
                 <div className="nav-bar">
                     <NavBar></NavBar>
