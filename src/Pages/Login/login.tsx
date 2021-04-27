@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { StoreState } from '../../store/createStore'
 import { singInRequest } from '../../store/modules/auth/actions'
@@ -16,6 +16,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Button, LinearProgress, Box } from '@material-ui/core';
+
+import { StringisNullOrEmpity } from '../../Helpers/helpers'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -45,15 +47,23 @@ const Login: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    if(statusLogin.error == true && start == false){
+    if (statusLogin.error == true && start == false) {
         Notify('error', statusLogin.errorMessage)
         start = true;
     }
 
     function login() {
-        items.systemId = 1;        
-        dispatch(singInRequest(items))       
-        start = false;
+        items.systemId = Number(process.env.REACT_APP_SYSTEM_ID);
+
+        if (StringisNullOrEmpity(items.password)) {
+            Notify('error', 'Senha invalida !')
+        }
+        else if(StringisNullOrEmpity(items.username)){
+            Notify('error', 'Usuario invalido !')
+        }else{
+            dispatch(singInRequest(items))
+            start = false;
+        }
     }
 
     function Copyright() {
@@ -70,7 +80,7 @@ const Login: React.FC = () => {
     }
 
     return (
-        <Container component="main" maxWidth="xs"> 
+        <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Notify />
