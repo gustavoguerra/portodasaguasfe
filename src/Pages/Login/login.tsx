@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { StoreState } from '../../store/createStore'
 import { singInRequest } from '../../store/modules/auth/actions'
-
 import { userLogin } from '../../store/modules/auth/types'
 
-import Notify from '../../Components/Notificacao/notify'
-
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Button, LinearProgress, Box } from '@material-ui/core';
+import { 
+        Button, 
+        LinearProgress, 
+        Box, 
+        Link, 
+        Grid, 
+        TextField,
+        CssBaseline,
+        Avatar,
+        Typography,
+        Container,
+        makeStyles 
+    } from '@material-ui/core';
 
 import { StringisNullOrEmpity } from '../../Helpers/helpers'
+import Copyright from '../../Components/Copyrigth/Copyright'
+import Notify from '../../Components/Notificacao/notify'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -38,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }));
+
 let start = false;
 
 const Login: React.FC = () => {
@@ -64,19 +69,6 @@ const Login: React.FC = () => {
             dispatch(singInRequest(items))
             start = false;
         }
-    }
-
-    function Copyright() {
-        return (
-            <Typography variant="body2" color="textSecondary" align="center">
-                {'Copyright © '}
-                <Link color="inherit" href="https://github.com/gustavoguerra/user_login_api">
-                    Luis Gustavo Guerra
-            </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
-            </Typography>
-        );
     }
 
     return (
@@ -134,7 +126,7 @@ const Login: React.FC = () => {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/newuser" variant="body2">
                                 {"Não tem uma conta ? Cadastre-se"}
                             </Link>
                         </Grid>

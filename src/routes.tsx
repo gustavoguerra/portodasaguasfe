@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import Login from './Pages/Login/login'
+import CreateUser from './Pages/CreateUser/createuser'
 
 import './CSS/layout.css'
 
@@ -8,6 +9,7 @@ export default function Routes() {
     return (
         <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/newuser" component={CreateUser}/>
             {/* <div className="box-container">
                 <div className="nav-bar">
                     <NavBar></NavBar>
