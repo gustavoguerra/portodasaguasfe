@@ -1,5 +1,5 @@
-export function StringisNullOrEmpity(str: string) {
-    if (str == '' || str == null || 0 === str.length) {
+export function StringisNullOrEmpity(str:any) {
+    if (str == '' || str == null || 0 === str.length || str == undefined) {
         return true
     }
     else{
