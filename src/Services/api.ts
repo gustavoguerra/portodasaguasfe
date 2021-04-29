@@ -9,7 +9,7 @@ const viaCep = axios.create({
 })
 
 const login = axios.create({
-    baseURL: process.env.REACT_APP_LOGIN_URL    
+    baseURL: process.env.REACT_APP_LOGIN_URL        
 })
 
 export default {api,viaCep,login};

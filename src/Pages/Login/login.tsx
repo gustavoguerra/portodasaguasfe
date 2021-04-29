@@ -5,6 +5,8 @@ import { StoreState } from '../../store/createStore'
 import { singInRequest } from '../../store/modules/auth/actions'
 import { userLogin } from '../../store/modules/auth/types'
 
+import RecoverPassword from '../RecoverPassword/recoverpassword'
+
 import { 
         Button, 
         LinearProgress, 
@@ -51,7 +53,7 @@ const Login: React.FC = () => {
     const [items, setItems] = useState<userLogin>(Object);
     const dispatch = useDispatch();
     const classes = useStyles();
-
+    const  [modalVisible, setModalVisible] = useState(false);
     if (statusLogin.error == true && start == false) {
         Notify('error', statusLogin.errorMessage)
         start = true;
@@ -76,8 +78,8 @@ const Login: React.FC = () => {
             <CssBaseline />
             <div className={classes.paper}>
                 <Notify />
-                <Avatar className={classes.avatar}>
-                </Avatar>
+                <Avatar className={classes.avatar}></Avatar>
+
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
@@ -121,9 +123,7 @@ const Login: React.FC = () => {
 
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Esqueci minha senha?
-                            </Link>
+                            <RecoverPassword />
                         </Grid>
                         <Grid item>
                             <Link href="/newuser" variant="body2">
@@ -136,6 +136,7 @@ const Login: React.FC = () => {
             <Box mt={8}>
                 <Copyright />
             </Box>
+            
         </Container>
     );
 }

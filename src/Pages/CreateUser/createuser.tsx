@@ -1,14 +1,12 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Button,
     LinearProgress,
     Box,
     TextField,
     CssBaseline,
-    Typography,
     Container,
     Link,
-    Grid
 } from '@material-ui/core';
 
 import Notify from '../../Components/Notificacao/notify'
@@ -44,7 +42,7 @@ const CreateUser: React.FC = () => {
             setusererror({ ...usererror, loadinbar: true })         
             
             axios.login({
-                url: '/api/User/createuser',
+                url: '/User/createuser',
                 method: 'post',
                 data: JSON.stringify(items),
                 headers: {'Content-Type': 'application/json'}
@@ -222,142 +220,6 @@ const CreateUser: React.FC = () => {
             </Container>
         </div>
     );
-
-
-
 }
 
 export default CreateUser
-// export default class CreateUser extends Component<Props> {
-//     state = {
-//         loadinbar: false,
-//         nameError: "",
-//         userModel: this.props
-//     }
-
-//     cadastrar(Usuario: UserLoginDomain){
-//         this.setState({locationbar:true})
-
-//         console.log(Usuario)
-//         if(this.validados())
-//         {
-
-
-//         }
-
-//         this.setState({locationbar:false})
-//     }
-
-//     validados(){
-//         return true
-//     }
-
-//     render() {
-
-//        // const { UsuarioModel } = this.props;
-//         const [items, setItems] = useState<UserLoginDomain>(Object);
-
-//         return (
-//             <div className="mais-container">
-//                 <Notify />
-//                 <Container component="main" maxWidth="xs">
-//                     <CssBaseline />
-//                     <div className=''>                       
-//                         <Typography component="h1" variant="h5">
-//                             Cadastro de Usuario
-//                         </Typography>
-//                         <form className='' noValidate>
-//                             <TextField
-//                                 error={this.state.nameError == "" ? false : true}
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 id="Nome"
-//                                 label="Nome"
-//                                 name="Nome"
-//                                 autoComplete="Nome"
-//                                 helperText={this.state.nameError}
-//                                 onChange={e => setItems({ ...items, firstName : e.target.value })}
-//                                 autoFocus
-//                             />
-//                             <TextField
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 id="Sobrenome"
-//                                 label="Sobrenome"
-//                                 name="Sobrenome"
-//                                 autoComplete="Sobrenome"
-//                                 autoFocus
-//                             />
-//                             <TextField
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 id="CPF"
-//                                 label="CPF"
-//                                 name="CPF"
-//                                 autoComplete="CPF"
-//                                 autoFocus
-//                             />
-//                             <TextField
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 id="Celular"
-//                                 label="Celular"
-//                                 name="Celular"
-//                                 autoComplete="Celular"
-//                                 autoFocus
-//                             />
-//                             <TextField
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 id="Email"
-//                                 label="Email"
-//                                 name="Email"
-//                                 autoComplete="Email"
-//                                 autoFocus
-//                             />
-//                             <TextField
-//                                 variant="outlined"
-//                                 margin="normal"
-//                                 required
-//                                 fullWidth
-//                                 name="password"
-//                                 label="Password"
-//                                 type="password"
-//                                 id="password"
-//                                 autoComplete="current-password"
-//                             />
-//                             <div className="button-stayle">
-//                                 <Button
-//                                     fullWidth
-//                                     variant="contained"
-//                                     color="primary"
-//                                     size="large"
-//                                     onClick={() => this.cadastrar(UsuarioModel)}
-//                                 >
-//                                     Cadastrar
-//                                 </Button>
-//                             </div>
-//                             <div className="loadin-bar">
-//                                 {this.state.loadinbar && (<LinearProgress />)}
-//                             </div>
-//                         </form>
-//                     </div>
-//                     <Box mt={8}>
-//                         <Copyright />
-//                     </Box>
-//                 </Container>
-//             </div>
-//         );
-//     }
-
-// }
