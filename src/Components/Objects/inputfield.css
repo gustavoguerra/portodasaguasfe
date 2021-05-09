@@ -1,0 +1,196 @@
+.div1 {
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  outline: 0;
+  box-sizing: inherit;
+  border: 0;
+  margin: 0;
+  display: block;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: row;
+  vertical-align: top;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.label1 {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  outline: 0;
+  box-sizing: inherit;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 0;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.00938em;
+  display: block;
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  z-index: 1;
+  transform: translate(14px, 20px) scale(1);
+  pointer-events: none;
+}
+
+.span1 {
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.00938em;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+}
+
+.div2 {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  display: inline-flex;
+  font-size: 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.1876em;
+  letter-spacing: 0.00938em;
+  width: 100%;
+  position: relative;
+  border-radius: 4px;
+}
+
+.input1{
+  -webkit-font-smoothing: antialiased;
+  outline: 0;
+  font: inherit;
+  color: currentColor;
+  width: 100%;
+  border: 0;
+  height: 1.1876em;
+  margin: 0;
+  display: block;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  animation-name: mui-auto-fill-cancel;
+  letter-spacing: inherit;
+  animation-duration: 10ms;
+  -webkit-tap-highlight-color: transparent;
+  padding: 16.8px 14px;
+  box-shadow: none;
+}
+
+.fieldset1 {
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.1876em;
+  letter-spacing: 0.00938em;
+  outline: 0;
+  box-sizing: inherit;
+  top: -5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  position: absolute;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.legend1{
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.1876em;
+  letter-spacing: 0.00938em;
+  pointer-events: none;
+  margin: 0;
+  outline: 0;
+  box-sizing: inherit;
+  width: auto;
+  height: 11px;
+  display: block;
+  padding: 0;
+  font-size: 0.75em;
+  max-width: 0.01px;
+  text-align: left;
+  transition: max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  visibility: hidden;
+}
+
+.span2{
+  -webkit-font-smoothing: antialiased;
+  color: red;
+}
+
+.input1:required + .label1 + .fieldset1 {
+  border-color: red;
+}
+
+.input1:focus + .label1 ,
+.input1:not(:placeholder-shown) + .label1{
+  transform: translate(15px, -8px) scale(0.75);
+  background-color: rgb(250, 250, 250);
+  color: #3f51b5;   
+  margin-left: -1px;
+  text-align: left;
+  padding: 5px 5px;
+  width: auto;
+}
+ .input1:focus + .label1 + .fieldset1 {
+  border-width: 2px;
+  border-color:  #3f51b5; 
+} 
+
+.input1:hover:not(:focus) + .label1 + .fieldset1 {
+   border-color:black;
+}
+
+.input1:not(:placeholder-shown):not(:focus) + .label1 {
+  background-color: rgb(250, 250, 250);
+  color: rgba(0, 0, 0, 0.54); 
+}
+
+ .input1:not(:placeholder-shown):not(:focus) + .label1 + .fieldset1 {
+   border-color: rgba(0, 0, 0, 0.23);
+} 
+
+.prefix-span {
+  padding: 16px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+
