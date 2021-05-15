@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import * as maskProps from '../../Helpers/mask'
-import {StringisNullOrEmpity} from '../../Helpers/helpers'
-import '../Objects/inputfield.css'
+import * as maskProps from '../../../Helpers/mask'
+import {StringisNullOrEmpity} from '../../../Helpers/helpers'
+import '../InputField/inputfield.css'
+
+
 
 const InputField: React.FC<maskProps.InputProps> = ({ Required = false, RequiredText, name, mask, ...props }) => {
 
@@ -57,7 +59,6 @@ const InputField: React.FC<maskProps.InputProps> = ({ Required = false, Required
         setEnable(false)
      }
 
-
     return (
         <div className="div1">
             {prefix && <span className="prefix-span">{prefix}</span>}
@@ -84,7 +85,6 @@ const InputField: React.FC<maskProps.InputProps> = ({ Required = false, Required
             </div>
         </div>
     )
-
 }
 export default InputField
 

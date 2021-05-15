@@ -154,9 +154,9 @@
   color: red;
 }
 
-.input1:required + .label1 + .fieldset1 {
+/* .input1:not(required) + .label1 + .fieldset1 {
   border-color: red;
-}
+} */
 
 .input1:focus + .label1 ,
 .input1:not(:placeholder-shown) + .label1{

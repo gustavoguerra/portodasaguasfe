@@ -15,7 +15,7 @@ import { StringisNullOrEmpity } from '../../Helpers/helpers'
 import { UserLoginDomain } from '../../Model/IUsuarioModel'
 import axios from '../../Services/api'
 
-import InputField from '../../Components/Objects/inputfield'
+import InputField from '../../Components/Objects/InputField/inputfield'
 
 interface userError {
     firstName: boolean;
@@ -98,32 +98,37 @@ const CreateUser: React.FC = () => {
                     <form noValidate>
                         <InputField 
                             Required
-                            RequiredText="Obrigarotorio"
+                            RequiredText="Nome Obrigarotorio"
                             name="Nome" 
                             mask="TEXT"                              
                             onChange={e => setItems({ ...items, firstName: e.target.value })} />
                         <InputField 
                             Required
+                            RequiredText="Sobrenome Obrigarotorio"
                             name="Sobrenome" 
                             mask="TEXT" 
                             onChange={e => setItems({ ...items, lastName: e.target.value })} />
                         <InputField 
                             Required
+                            RequiredText="CPF Obrigarotorio"
                             name="CPF" 
                             mask="CPF" 
                             onChange={e => setItems({ ...items, socialNumber: e.target.value })} />
                         <InputField 
                             Required
+                            RequiredText="Celular Obrigarotorio"
                             name="Celular" 
                             mask="CELLPHONE" 
                             onChange={e => setItems({ ...items, cellPhoneNumber: e.target.value })} />
                         <InputField 
                             Required
+                            RequiredText="Email Obrigarotorio"
                             name="Email" 
                             mask="TEXT" 
                             onChange={e => setItems({ ...items, email: e.target.value })} />
                         <InputField 
                             Required
+                            RequiredText="Password Obrigarotorio"
                             name="Password" 
                             type="password" 
                             mask="TEXT" 
