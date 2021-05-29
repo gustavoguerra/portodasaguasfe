@@ -24,6 +24,7 @@ import {
 import { StringisNullOrEmpity } from '../../Helpers/helpers'
 import Copyright from '../../Components/Copyrigth/Copyright'
 import Notify from '../../Components/Notificacao/notify'
+import { Redirect } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -54,9 +55,14 @@ const Login: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const  [modalVisible, setModalVisible] = useState(false);
+
     if (statusLogin.error == true && start == false) {
         Notify('error', statusLogin.errorMessage)
         start = true;
+    }
+
+    if(statusLogin.isSingnedIn){
+        <Redirect to="/dashboard" />
     }
 
     function login() {
