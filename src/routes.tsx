@@ -7,6 +7,9 @@ import Login from './Pages/Login/login'
 import CreateUser from './Pages/CreateUser/createuser'
 import Dashboard from './Pages/Dashboard/dashboard'
 import ClientList from './Pages/CreateClient/clientlist'
+import ClientEdit from './Pages/CreateClient/clientedit'
+import ProductList from './Pages/Product/productlist'
+import ProductEdit from './Pages/Product/productedit'
 
 import './CSS/layout.css'
 
@@ -19,6 +22,9 @@ export default function Routes() {
             <Menus>
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/clientlist" component={ClientList} />
+                <Route exact path="/clientedit" component={ClientEdit} />
+                <Route exact path="/productlist" component={ProductList} />
+                <Route exact path="/productedit" component={ProductEdit} />
             </Menus>
         </Switch>
     )

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ClientList: React.FC = () => {
+const ProductList: React.FC = () => {
 
     useEffect(() => {
         setPage(0);
@@ -21,9 +21,9 @@ const ClientList: React.FC = () => {
     }, []);
 
 
-    const funcionario = 0 // useSelector((state: StoreState) => state.funcionario.dataByFilter);
+    const product = 0 // useSelector((state: StoreState) => state.product.dataByFilter);
     const dispatch = null //useDispatch();
-    const totalrow = 0 //funcionario == undefined ? 0 : funcionario.totalItens
+    const totalrow = 0 //product == undefined ? 0 : product.totalItens
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const pages = [10, 25, 100]
@@ -34,7 +34,7 @@ const ClientList: React.FC = () => {
     };
 
     function getByFilter(nPage: number, nRowsPage: number) {
-        // dispatch(funcionarioRequestByFilter({
+        // dispatch(productRequestByFilter({
         //     page: nPage + 1,
         //     itens: nRowsPage,
         //     filterType: '',
@@ -51,7 +51,7 @@ const ClientList: React.FC = () => {
     return (
         <div className="">
 
-            <Paper className='funcionario_root'>
+            <Paper className='product_root'>
                 <Toolbar>
                     <TextField
                         label="Pesquisar"
@@ -66,25 +66,19 @@ const ClientList: React.FC = () => {
                         color="primary"
                         className={classes.button}
                         // endIcon={<Icon>Email</Icon>}
-                    >Novo Cliente</Button>
+                    >Novo Produto</Button>
                 </Toolbar>
 
-                <TableContainer className='funcionario_container'>
+                <TableContainer className='product_container'>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
                             <TableRow>
                                 <TableCell><TableSortLabel>ID</TableSortLabel></TableCell>
-                                <TableCell>Nome</TableCell>
-                                <TableCell>RG</TableCell>
-                                <TableCell>CPF</TableCell>
-                                <TableCell>Telefone</TableCell>
-                                <TableCell>E-mail</TableCell>
-                                <TableCell>Status</TableCell>
-                                <TableCell>Opções</TableCell>
+                                <TableCell>Descrição</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {/* {funcionario?.listFuncionario.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                            {/* {product?.listproduct.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                         <TableCell key={row.id}>{row.id}</TableCell>
@@ -114,4 +108,4 @@ const ClientList: React.FC = () => {
         </div>
     )
 }
-export default ClientList;
+export default ProductList;
