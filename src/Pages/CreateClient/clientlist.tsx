@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
-import { Paper,Toolbar,TextField,InputAdornment,TableContainer,Table,TableRow,TableCell,TableHead,TableSortLabel,TableBody,TablePagination } from '@material-ui/core';
+import { Paper, Toolbar, TextField, InputAdornment, TableContainer, Table, TableRow, TableCell, TableHead, TableSortLabel, TableBody, TablePagination, Button } from '@material-ui/core';
 import { Search } from '@material-ui/icons'
+
+import '../CreateClient/client.css'
 
 const ClientList: React.FC = () => {
 
@@ -40,17 +42,30 @@ const ClientList: React.FC = () => {
 
     return (
         <div className="">
-
-       <Paper className='funcionario_root'>
+            <Paper className='funcionario_root'>
                 <Toolbar>
-                    <TextField
-                        label="Pesquisar"
-                        InputProps={{
-                            startAdornment: (<InputAdornment position="start">
-                                <Search />
-                            </InputAdornment>)
-                        }}
-                    />
+                    <div className="Aline-Toolbar">
+                        <div>
+                            <TextField
+                                label="Pesquisar"
+                                InputProps={{
+                                    startAdornment: (<InputAdornment position="start">
+                                        <Search />
+                                    </InputAdornment>)
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                href="/clientedit"
+                            // onClick={() => ClienteSaveOrEdit()}
+                            >Novo Cliente</Button>
+                        </div>
+                    </div>
                 </Toolbar>
                 <TableContainer className='funcionario_container'>
                     <Table stickyHeader aria-label="sticky table" >
