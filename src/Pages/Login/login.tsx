@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { StoreState } from '../../store/createStore'
@@ -24,7 +25,6 @@ import {
 import { StringisNullOrEmpity } from '../../Helpers/helpers'
 import Copyright from '../../Components/Copyrigth/Copyright'
 import Notify from '../../Components/Notificacao/notify'
-import { Redirect } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -55,6 +55,7 @@ const Login: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const  [modalVisible, setModalVisible] = useState(false);
+    const history = useHistory();
 
     if (statusLogin.error == true && start == false) {
         Notify('error', statusLogin.errorMessage)
@@ -62,7 +63,7 @@ const Login: React.FC = () => {
     }
 
     if(statusLogin.isSingnedIn){
-        <Redirect to="/dashboard" />
+        history.push('/dashboard');
     }
 
     function login() {

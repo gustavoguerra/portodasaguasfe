@@ -7,10 +7,7 @@ import { ClienteViewModel } from '../../Model/IClienteMdel'
 import {
     Button,
     LinearProgress,
-    Box,
-    CssBaseline,
-    Container,
-    Link
+    Container
 } from '@material-ui/core';
 
 
@@ -29,7 +26,7 @@ const ClientEdit: React.FC = () => {
             <Notify />
             <Container component="main" maxWidth="xs">
                 <div className="title-register">
-                    <label>Dados do Novo Usuario</label>
+                    <label>Dados do Usuario</label>
                 </div>
 
                 <form noValidate>

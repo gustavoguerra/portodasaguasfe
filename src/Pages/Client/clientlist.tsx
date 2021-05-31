@@ -1,35 +1,29 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
-import {
-    Paper, Toolbar, TextField, InputAdornment, TableContainer, Table, TableRow, TableCell, TableHead, TableSortLabel, TableBody, TablePagination, Button,
-    Icon,
-    makeStyles
-} from '@material-ui/core';
+
+import { Paper, Toolbar, TextField, InputAdornment, TableContainer, Table, TableRow, TableCell, TableHead, TableSortLabel, TableBody, TablePagination, Button } from '@material-ui/core';
 import { Search } from '@material-ui/icons'
-import './product.css'
-
-import './product.css'
 
 
+import './client.css'
 
-const ProductList: React.FC = () => {
-
+const ClientList: React.FC = () => {
     useEffect(() => {
         setPage(0);
         setRowsPerPage(10);
         getByFilter(0, 10);
     }, []);
 
-    const product = 0 // useSelector((state: StoreState) => state.product.dataByFilter);
+
+    const funcionario = 0 // useSelector((state: StoreState) => state.funcionario.dataByFilter);
     const dispatch = null //useDispatch();
-    const totalrow = 0 //product == undefined ? 0 : product.totalItens
+    const totalrow = 0 //funcionario == undefined ? 0 : funcionario.totalItens
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const pages = [10, 25, 100]
     const func = []
     const history = useHistory();
-
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
         getByFilter(newPage, rowsPerPage);
@@ -41,26 +35,24 @@ const ProductList: React.FC = () => {
     };
 
     function getByFilter(nPage: number, nRowsPage: number) {
-        // dispatch(productRequestByFilter({
+        // dispatch(funcionarioRequestByFilter({
         //     page: nPage + 1,
         //     itens: nRowsPage,
         //     filterType: '',
         //     filterValue: ''
         // }))
     }
-
-    function ProductNewOrEdit() {
-        history.push('/productedit');
+    function ClienteNewOrEdit(){
+        history.push('/clientedit');
     }
 
-    return (
 
-        <Paper className='product_root'>
+    return (
+        <Paper className='funcionario_root'>
             <div className='Text-title'>
-                <label>Lista de Produtos</label>
+                <label>Lista de Clientes</label>
             </div>
             <Toolbar>
-
                 <div className="Aline-Toolbar">
                     <div>
                         <TextField
@@ -78,24 +70,29 @@ const ProductList: React.FC = () => {
                             variant="contained"
                             color="primary"
                             size="large"
-                            href="/productedit"
-                            onClick={() => ProductNewOrEdit()}
-                        >Novo Produto</Button>
+                            href="/clientedit"
+                           onClick={() => ClienteNewOrEdit()}
+                        >Novo Cliente</Button>
                     </div>
                 </div>
             </Toolbar>
 
-            <TableContainer className='product_container'>
+            <TableContainer className='funcionario_container'>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>
                             <TableCell><TableSortLabel>ID</TableSortLabel></TableCell>
-                            <TableCell>Descrição</TableCell>
+                            <TableCell>Nome</TableCell>
+                            <TableCell>RG</TableCell>
+                            <TableCell>CPF</TableCell>
+                            <TableCell>Telefone</TableCell>
+                            <TableCell>E-mail</TableCell>
+                            <TableCell>Status</TableCell>
                             <TableCell>Opções</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* {product?.listproduct.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {/* {funcionario?.listFuncionario.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                         <TableCell key={row.id}>{row.id}</TableCell>
@@ -122,6 +119,7 @@ const ProductList: React.FC = () => {
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
         </Paper>
+
     )
 }
-export default ProductList;
+export default ClientList;
