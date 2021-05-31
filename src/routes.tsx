@@ -12,13 +12,19 @@ import ProductList from './Pages/Product/productlist'
 import ProductEdit from './Pages/Product/productedit'
 
 import './CSS/layout.css'
+import { useSelector } from 'react-redux';
+import { StoreState } from './store/createStore';
 
 export default function Routes() {
+
+    const statusLogin = useSelector((state: StoreState) => state.auth);
+
+    
+    
     return (
         <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/newuser" component={CreateUser} />
-
             <Menus>
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/clientlist" component={ClientList} />
