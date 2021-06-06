@@ -34,6 +34,11 @@ export default function auth(state = initialState, action: AuthAction): AuthStat
                 errorMessage: action.payload,
                 token: ''
             }
+        case AuthTypes.LOAD_VALIDATE:
+            return {
+                ...state,
+                loadingSingInRequest
+            }
         default:
             return {
                 ...state

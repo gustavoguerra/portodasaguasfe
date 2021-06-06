@@ -27,22 +27,22 @@ const ProductEdit: React.FC = () => {
             <Notify />
             <Container component="main" maxWidth="xs">
                 <div className="title-register">
-                    <label>Dados do Usuario</label>
+                    <label>Dados do Produto</label>
                 </div>
 
                 <form noValidate>
-                    <InputField
+                    {/* <InputField
                         Required
                         RequiredText="Nome Obrigarotorio"
-                        name="Nome"
+                        name="Nome do Produto"
                         mask="TEXT"
                         onChange={e => setCliente({ ...cliente, produtoNome: e.target.value })} />
                     <InputField
                         Required
-                        RequiredText="CEP Obrigarotorio"
-                        name="CEP"
-                        mask="CEP"
-                        onChange={e => setCliente({ ...cliente, produtoValor: e.target.value })} />
+                        RequiredText="Valor Obrigarotio"
+                        name="Valor Venda"
+                        mask="REALCURRENCY"
+                        onChange={e => setCliente({ ...cliente, produtoValor: e.target.value })} /> */}
 
                     <FormControlLabel
                         control={

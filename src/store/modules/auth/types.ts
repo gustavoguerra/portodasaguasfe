@@ -13,7 +13,8 @@ export interface userLogin {
 export enum AuthTypes{
     LOAD_REQUEST = '@auth/SING_IN_REQUEST',
     LOAD_SUCCCES = '@auth/SING_IN_SUCCESS',
-    LOAD_FAILURE = '@auth/SING_IN_FAILURE'
+    LOAD_FAILURE = '@auth/SING_IN_FAILURE',
+    LOAD_VALIDATE = '@auth/SING_IN_VALIDATE'
 }
 
 export interface AuthState {

@@ -3,6 +3,7 @@ import React, { InputHTMLAttributes } from "react";
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     mask: "CEP" | "REALCURRENCY" | "DOLARCURRENCY" | "EUROCURRENCY" | "CELLPHONE" | "CPF" | "CNPJ" | "NUMBER" | "TEXT" | "DATA",
     name: string
+    value?: string
     Required?: boolean | true
     RequiredText?: string
 }

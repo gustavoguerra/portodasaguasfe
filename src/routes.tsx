@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Menus from './Components/MenusBar/menus'
 
@@ -19,8 +19,8 @@ export default function Routes() {
 
     const statusLogin = useSelector((state: StoreState) => state.auth);
 
-    
-    
+    console.log(localStorage.getItem("TOKEN"))
+
     return (
         <Switch>
             <Route exact path="/" component={Login} />

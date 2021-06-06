@@ -14,8 +14,8 @@
   padding: 0;
   position: relative;
   min-width: 0;
+  display: flex;
   flex-direction: row;
-  vertical-align: top;
   margin-top: 16px;
   margin-bottom: 8px;
   width: 100%;

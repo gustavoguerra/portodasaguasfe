@@ -56,7 +56,7 @@ const Login: React.FC = () => {
     const classes = useStyles();
     const  [modalVisible, setModalVisible] = useState(false);
     const history = useHistory();
-
+    require('dotenv').config()
     if (statusLogin.error == true && start == false) {
         Notify('error', statusLogin.errorMessage)
         start = true;

@@ -73,7 +73,6 @@ const CreateUser: React.FC = () => {
             Notify('error', 'Favor preencha todos os campo obrigatorios !')
             return true
         }
-        
     }
 
     function VeridicaPassword(value: string) {
@@ -96,50 +95,50 @@ const CreateUser: React.FC = () => {
                     </div>
 
                     <form noValidate>
-                        <InputField 
+                        <InputField
                             Required
                             RequiredText="Nome Obrigarotorio"
-                            name="Nome" 
-                            mask="TEXT"                              
-                            onChange={e => setItems({ ...items, firstName: e.target.value })} />
-                        <InputField 
+                            name="Nome"
+                            mask="TEXT"
+                            onChange={e => setItems({ ...items, firstName: e.currentTarget.value })} />
+                        <InputField
                             Required
                             RequiredText="Sobrenome Obrigarotorio"
-                            name="Sobrenome" 
-                            mask="TEXT" 
-                            onChange={e => setItems({ ...items, lastName: e.target.value })} />
-                        <InputField 
+                            name="Sobrenome"
+                            mask="TEXT"
+                            onChange={e => setItems({ ...items, lastName: e.currentTarget.value })} />
+                        <InputField
                             Required
                             RequiredText="CPF Obrigarotorio"
-                            name="CPF" 
-                            mask="CPF" 
-                            onChange={e => setItems({ ...items, socialNumber: e.target.value })} />
-                        <InputField 
+                            name="CPF"
+                            mask="CPF"
+                            onChange={e => setItems({ ...items, socialNumber: e.currentTarget.value })} />
+                        <InputField
                             Required
                             RequiredText="Celular Obrigarotorio"
-                            name="Celular" 
-                            mask="CELLPHONE" 
-                            onChange={e => setItems({ ...items, cellPhoneNumber: e.target.value })} />
-                        <InputField 
+                            name="Celular"
+                            mask="CELLPHONE"
+                            onChange={e => setItems({ ...items, cellPhoneNumber: e.currentTarget.value })} />
+                        <InputField
                             Required
                             RequiredText="Email Obrigarotorio"
-                            name="Email" 
-                            mask="TEXT" 
-                            onChange={e => setItems({ ...items, email: e.target.value })} />
-                        <InputField 
+                            name="Email"
+                            mask="TEXT"
+                            onChange={e => setItems({ ...items, email: e.currentTarget.value })} />
+                        <InputField
                             Required
                             RequiredText="Password Obrigarotorio"
-                            name="Password" 
-                            type="password" 
-                            mask="TEXT" 
-                            onChange={e => setItems({ ...items, userPassword: e.target.value })} />
-                        <InputField 
+                            name="Password"
+                            type="password"
+                            mask="TEXT"
+                            onChange={e => setItems({ ...items, userPassword: e.currentTarget.value })} />
+                        <InputField
                             Required
-                            name="Confirm Password" 
-                            type="password" 
-                            mask="TEXT" 
-                            onBlur={e => VeridicaPassword(e.target.value)} />
-                        
+                            name="Confirm Password"
+                            type="password"
+                            mask="TEXT"
+                            onBlur={e => VeridicaPassword(e.currentTarget.value)} />
+
                         <div className="button-stayle">
                             <Button
                                 fullWidth
