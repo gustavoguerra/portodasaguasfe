@@ -9,7 +9,6 @@ export interface userLogin {
     systemId: number
 }
 
-
 export enum AuthTypes{
     LOAD_REQUEST = '@auth/SING_IN_REQUEST',
     LOAD_SUCCCES = '@auth/SING_IN_SUCCESS',
@@ -22,5 +21,4 @@ export interface AuthState {
     readonly isSingnedIn: boolean;
     readonly error: boolean;
     readonly errorMessage: string | null;
-    readonly token: string | null;
 }

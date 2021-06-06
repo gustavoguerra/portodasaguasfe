@@ -4,8 +4,7 @@ const initialState: AuthState = {
     loadingSingInRequest: false,
     isSingnedIn: false,
     error: false,
-    errorMessage: null,
-    token: null   
+    errorMessage: null 
 }
 
 export default function auth(state = initialState, action: AuthAction): AuthState {
@@ -15,15 +14,13 @@ export default function auth(state = initialState, action: AuthAction): AuthStat
                 ...state,
                 loadingSingInRequest: true,
                 error: false,
-                errorMessage: '',
-                token: '' 
+                errorMessage: ''
             }
         case AuthTypes.LOAD_SUCCCES:
             return {
                 ...state,
                 loadingSingInRequest: false,
-                isSingnedIn: true,  
-                token: action.payload             
+                isSingnedIn: true           
             }
         case AuthTypes.LOAD_FAILURE:
             return {
@@ -32,12 +29,13 @@ export default function auth(state = initialState, action: AuthAction): AuthStat
                 isSingnedIn: false, 
                 error: true,
                 errorMessage: action.payload,
-                token: ''
             }
         case AuthTypes.LOAD_VALIDATE:
             return {
                 ...state,
-                loadingSingInRequest
+                loadingSingInRequest: true,
+                error: false,
+                errorMessage: ''
             }
         default:
             return {

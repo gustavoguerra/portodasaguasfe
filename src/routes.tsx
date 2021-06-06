@@ -12,15 +12,11 @@ import ProductList from './Pages/Product/productlist'
 import ProductEdit from './Pages/Product/productedit'
 
 import './CSS/layout.css'
-import { useSelector } from 'react-redux';
-import { StoreState } from './store/createStore';
 
 export default function Routes() {
 
-    const statusLogin = useSelector((state: StoreState) => state.auth);
-
-    console.log(localStorage.getItem("TOKEN"))
-
+//Usar esse video para fazer a autenticação de rotas    
+//https://www.youtube.com/watch?v=sYe4r8WXGQg
     return (
         <Switch>
             <Route exact path="/" component={Login} />

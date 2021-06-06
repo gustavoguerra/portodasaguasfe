@@ -9,9 +9,10 @@ export function* singIn( { payload } :  ActionType<typeof actions.singInRequest>
         const { username, password, systemId } = payload;
         const { data } = yield call(api.login.post, '/Auth', {
             username, password , systemId           
-        });     
-        localStorage.setItem('TOKEB',data.token)
-        yield put(actions.singInSuccess({ token : data}))
+        });    
+
+        localStorage.setItem('TOKEN',data)
+        yield put(actions.singInSuccess())      
     }
     catch (error) {
         
@@ -21,14 +22,20 @@ export function* singIn( { payload } :  ActionType<typeof actions.singInRequest>
     }
 }
 
-export function* validateToken( { payload } : ActionType<typeof actions.singInRequest>){
+export function* validateToken(){
     try{
-
-
-
+        const { data } = yield call(api.login.get, '/validatetoken/' + localStorage.getItem('TOKEN'));     
+        
+        if(data){
+            yield put(actions.singInSuccess())
+        }else{
+            localStorage.setItem('TOKEN', "")
+            yield put(actions.singInFailure({ errorMessage: ""}))
+        }              
     }
     catch (error) {
-
+        localStorage.setItem('TOKEN', "")
+        yield put(actions.singInFailure({ errorMessage: ""}))
     }
 }
 
