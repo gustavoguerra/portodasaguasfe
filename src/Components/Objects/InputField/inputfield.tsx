@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import * as maskProps from '../../../Helpers/mask'
 import { StringisNullOrEmpity } from '../../../Helpers/helpers'
 import '../InputField/inputfield.css'

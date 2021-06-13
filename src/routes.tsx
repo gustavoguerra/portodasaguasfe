@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
+import PrivateRoute from './Components/Router/RouterAuthenticate'
 
 import Menus from './Components/MenusBar/menus'
 
@@ -22,7 +23,8 @@ export default function Routes() {
             <Route exact path="/" component={Login} />
             <Route exact path="/newuser" component={CreateUser} />
             <Menus>
-                <Route exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute path="/dashboard" component={Dashboard} />
+                {/* <Route exact path="/dashboard" component={Dashboard} /> */}
                 <Route exact path="/clientlist" component={ClientList} />
                 <Route exact path="/clientedit" component={ClientEdit} />
                 <Route exact path="/productlist" component={ProductList} />
