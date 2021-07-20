@@ -23,9 +23,9 @@ export default function Routes() {
             <Route exact path="/" component={Login} />
             <Route exact path="/newuser" component={CreateUser} />
             <Menus>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/clientlist" component={ClientList} />
-                <PrivateRoute exact path="/clientedit" component={ClientEdit} />
+                <PrivateRoute exact path="/dashboard"   component={Dashboard} />
+                <PrivateRoute exact path="/clientlist"  component={ClientList} />
+                <PrivateRoute exact path="/clientedit"  component={ClientEdit} />
                 <PrivateRoute exact path="/productlist" component={ProductList} />
                 <PrivateRoute exact path="/productedit" component={ProductEdit} />
             </Menus>

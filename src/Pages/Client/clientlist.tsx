@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import Services from '../../Services/api'
 import Notfy from '../../Components/Notificacao/notify'
 
@@ -64,8 +64,15 @@ const ClientList: React.FC = () => {
         })
     }
 
+    function ClientEdit(cliente: ClienteViewModel){
+            history.push({
+            pathname: '/clientedit',
+            state: cliente
+        });
 
-    return (
+    }
+
+    return (        
         <Paper className='funcionario_root'>
             <div className='Text-title'>
                 <label>Lista de Clientes</label>
@@ -116,7 +123,7 @@ const ClientList: React.FC = () => {
                                         <TableCell>{row.clienteRua} - {row.clienteNumero}</TableCell>
                                         <TableCell>{row.clienteBairro}</TableCell>
                                         <TableCell>{row.clienteTelefone}</TableCell>
-                                        <TableCell><Button color="primary" variant="contained">Editar</Button></TableCell>
+                                        <TableCell><Button color="primary" variant="contained" onClick={() => ClientEdit(row)}>Editar</Button></TableCell>
                                     </TableRow>
                                 );
                             })}

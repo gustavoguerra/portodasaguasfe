@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from '../../Services/api'
 import Services from '../../Services/api'
 import Notify from '../../Components/Notificacao/notify'
@@ -11,13 +11,18 @@ import {
     LinearProgress,
     Container
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom'
 
-const ClientEdit: React.FC = () => {
+const ClientEdit: React.FC<ClienteViewModel> = (props) => {
 
     const [cliente, setCliente] = useState<ClienteViewModel>(Object);
     const [loadinbar, setLoadbar] = useState(false);
     const history = useHistory();
+    
+    // useEffect(() => {
+    //     // const { children } = props
+    //     console.log(props)
+    //   }, []);
+      console.log(props)
     function ConsultaCEP(cep: string) {
         if (cep.replace("-", "").length == 8) {
             axios.viaCep.get(cep.replace("-", "") + '/json').then(response => {
@@ -39,7 +44,19 @@ const ClientEdit: React.FC = () => {
         setLoadbar(true);
         await Services.api.post('/Cliente/create', cliente)
         .then(response => {            
-            Notify('success','Cliente salvo com sucesso!')
+            Notify('success','Cliente salvo com sucesso!')         
+            setCliente({
+                id : 0,
+                clienteNome: '',
+                clienteCep: '',
+                clienteRua: '',
+                clienteNumero: '',
+                clienteBairro: '',
+                clienteEstado: '',
+                clienteCidade: '',
+                clienteEmail: '',
+                clienteTelefone: ''
+            });
         }).catch(error => {
             if(error.response.status == 401){
                 history.push('/');
