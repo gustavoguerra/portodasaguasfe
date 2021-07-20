@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    //baseURL: 'https://localhost:5001/api',
+    //baseURL: process.env.REACT_APP_API_URL,
+    baseURL: 'https://depositoapi.herokuapp.com/api/',
     headers: {
         common: {
             Authorization: localStorage.getItem('TOKEN')
