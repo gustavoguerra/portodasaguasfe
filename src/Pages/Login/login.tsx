@@ -5,22 +5,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import { StoreState } from '../../store/createStore'
 import { singInRequest } from '../../store/modules/auth/actions'
 import { userLogin } from '../../store/modules/auth/types'
-
 import RecoverPassword from '../RecoverPassword/recoverpassword'
 
-import { 
-        Button, 
-        LinearProgress, 
-        Box, 
-        Link, 
-        Grid, 
-        TextField,
-        CssBaseline,
-        Avatar,
-        Typography,
-        Container,
-        makeStyles 
-    } from '@material-ui/core';
+import {
+    Button,
+    LinearProgress,
+    Box,
+    Link,
+    Grid,
+    TextField,
+    CssBaseline,
+    Avatar,
+    Typography,
+    Container,
+    makeStyles
+} from '@material-ui/core';
 
 import { StringisNullOrEmpity } from '../../Helpers/helpers'
 import Copyright from '../../Components/Copyrigth/Copyright'
@@ -54,15 +53,15 @@ const Login: React.FC = () => {
     const [items, setItems] = useState<userLogin>(Object);
     const dispatch = useDispatch();
     const classes = useStyles();
-    const  [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const history = useHistory();
     require('dotenv').config()
-    if (statusLogin.error == true && start == false) {
+    if (statusLogin.error == true && start == false && !StringisNullOrEmpity(statusLogin.errorMessage)) {
         Notify('error', statusLogin.errorMessage)
         start = true;
     }
 
-    if(statusLogin.isSingnedIn){
+    if (statusLogin.isSingnedIn) {
         history.push('/dashboard');
     }
 
@@ -72,9 +71,9 @@ const Login: React.FC = () => {
         if (StringisNullOrEmpity(items.password)) {
             Notify('error', 'Senha invalida !')
         }
-        else if(StringisNullOrEmpity(items.username)){
+        else if (StringisNullOrEmpity(items.username)) {
             Notify('error', 'Usuario invalido !')
-        }else{
+        } else {
             dispatch(singInRequest(items))
             start = false;
         }
@@ -143,7 +142,7 @@ const Login: React.FC = () => {
             <Box mt={8}>
                 <Copyright />
             </Box>
-            
+
         </Container>
     );
 }

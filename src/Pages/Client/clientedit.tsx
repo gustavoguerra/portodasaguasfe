@@ -1,33 +1,29 @@
 import React, { useState } from 'react'
 
 import axios from '../../Services/api'
+import Services from '../../Services/api'
 import Notify from '../../Components/Notificacao/notify'
 import InputField from '../../Components/Objects/InputField/inputfield'
 import { ClienteViewModel } from '../../Model/IClienteMdel'
-
 
 import {
     Button,
     LinearProgress,
     Container
 } from '@material-ui/core';
-import { useSelector } from 'react-redux'
-import { StoreState } from '../../store/createStore'
+import { useHistory } from 'react-router-dom'
 
 const ClientEdit: React.FC = () => {
 
     const [cliente, setCliente] = useState<ClienteViewModel>(Object);
     const [loadinbar, setLoadbar] = useState(false);
-    const statusLogin = useSelector((state: StoreState) => state.auth);
-
-    console.log(statusLogin)
+    const history = useHistory();
     function ConsultaCEP(cep: string) {
         if (cep.replace("-", "").length == 8) {
-            // setCliente({ ...cliente, clineteNome: cep })}
             axios.viaCep.get(cep.replace("-", "") + '/json').then(response => {
-                console.log(response)
                 setCliente({
                     ...cliente,
+                    clienteCep: response.data.cep,
                     clienteRua: response.data.logradouro,
                     clienteBairro: response.data.bairro,
                     clienteCidade : response.data.localidade,
@@ -35,15 +31,24 @@ const ClientEdit: React.FC = () => {
                 })
             }).catch(error => {
                 Notify('error', 'Erro ao consultar CEP');
-                console.log(error)
             })
         }
     }
 
-    function ClienteSaveOrEdit() {
-        console.log(cliente)
-
+    async function ClienteSaveOrEdit() {
         setLoadbar(true);
+        await Services.api.post('/Cliente/create', cliente)
+        .then(response => {            
+            Notify('success','Cliente salvo com sucesso!')
+        }).catch(error => {
+            if(error.response.status == 401){
+                history.push('/');
+            }
+            else{
+                Notify('error',String(error.response.data.message))
+            }           
+        })
+        setLoadbar(false);
     }
 
     return (
@@ -60,8 +65,8 @@ const ClientEdit: React.FC = () => {
                         RequiredText="Nome Obrigarotorio"
                         name="Nome"
                         mask="TEXT"
-                        value={cliente.clineteNome}
-                        onChange={e => setCliente({ ...cliente, clineteNome: e.currentTarget.value })} />
+                        value={cliente.clienteNome}
+                        onChange={e => setCliente({ ...cliente, clienteNome: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="CEP Obrigarotorio"

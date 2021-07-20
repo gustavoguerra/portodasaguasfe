@@ -1,6 +1,6 @@
 export interface ClienteViewModel {
     id: number;
-    clineteNome: string;
+    clienteNome: string;
     clienteCep: string;
     clienteRua: string;
     clienteNumero: string;

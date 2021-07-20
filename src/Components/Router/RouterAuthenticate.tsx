@@ -1,17 +1,35 @@
-import react from 'react'
-import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router'
+import react, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { singInValidate } from '../../store/modules/auth/actions'
+import { Redirect, Route, RouteComponentProps } from 'react-router-dom'
 import { StoreState } from '../../store/createStore';
+import { StringisNullOrEmpity } from '../../Helpers/helpers'
 
-const PrivateRoute: React.FC<any> = ({ Component, ...rest }) => {
+interface IRouterProps {
+    exact?: boolean;
+    path: string
+    component: React.ComponentType<any>;
+}
 
+const PrivateRoute: React.FC<IRouterProps> = ({ component: Component, ...rest }) => {
     const statusLogin = useSelector((state: StoreState) => state.auth);
-    console.log(statusLogin)
+    const dispatch = useDispatch();
+
+    useEffect(() => { 
+        if (!statusLogin.isSingnedIn && (StringisNullOrEmpity(localStorage.getItem('TOKEN')))) {         
+           dispatch(singInValidate())
+        }
+    },[]);
+
+    function validateToken(props: RouteComponentProps) {
+        if (!StringisNullOrEmpity(localStorage.getItem('TOKEN'))) {
+            return <Component to={{ pathname: '/dashboard', state: { from: props.location } }} />
+        } else if (!statusLogin.isSingnedIn && StringisNullOrEmpity(localStorage.getItem('TOKEN'))) {
+            return <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        }
+    }
     return (
-        <Route {...rest} render={props => (
-           // statusLogin.isSingnedIn ? (<Component {...props} />) : (<Redirect to={{ pathname: '/', state: { from: props.location } }} />)
-           statusLogin.isSingnedIn ? (<Redirect to={{ pathname: '/', state: { from: props.location } }} />) : (<Redirect to={{ pathname: '/', state: { from: props.location } }} />)
-        )} />
+        <Route {...rest} render={props => (validateToken(props))} />
     )
 }
 

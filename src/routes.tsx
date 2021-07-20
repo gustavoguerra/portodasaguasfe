@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from './Components/Router/RouterAuthenticate'
 
 import Menus from './Components/MenusBar/menus'
@@ -16,19 +16,18 @@ import './CSS/layout.css'
 
 export default function Routes() {
 
-//Usar esse video para fazer a autenticação de rotas    
-//https://www.youtube.com/watch?v=sYe4r8WXGQg
+    //Usar esse video para fazer a autenticação de rotas    
+    //https://www.youtube.com/watch?v=sYe4r8WXGQg
     return (
         <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/newuser" component={CreateUser} />
             <Menus>
-                <PrivateRoute path="/dashboard" component={Dashboard} />
-                {/* <Route exact path="/dashboard" component={Dashboard} /> */}
-                <Route exact path="/clientlist" component={ClientList} />
-                <Route exact path="/clientedit" component={ClientEdit} />
-                <Route exact path="/productlist" component={ProductList} />
-                <Route exact path="/productedit" component={ProductEdit} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/clientlist" component={ClientList} />
+                <PrivateRoute exact path="/clientedit" component={ClientEdit} />
+                <PrivateRoute exact path="/productlist" component={ProductList} />
+                <PrivateRoute exact path="/productedit" component={ProductEdit} />
             </Menus>
         </Switch>
     )

@@ -9,4 +9,4 @@ export const singInSuccess = () => action(AuthTypes.LOAD_SUCCCES)
 
 export const singInFailure = ( {errorMessage} : {errorMessage: string} ) => action(AuthTypes.LOAD_FAILURE, errorMessage)
 
-export const singInValidate =  () => action(AuthTypes.LOAD_VALIDATE);
+export const singInValidate = () => action(AuthTypes.LOAD_VALIDATE);
