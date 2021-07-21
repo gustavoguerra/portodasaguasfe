@@ -67,7 +67,7 @@ const ClientList: React.FC = () => {
     function ClientEdit(cliente: ClienteViewModel){
             history.push({
             pathname: '/clientedit',
-            state: cliente
+            state:  cliente 
         });
 
     }

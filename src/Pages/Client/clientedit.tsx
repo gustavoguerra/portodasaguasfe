@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import axios from '../../Services/api'
 import Services from '../../Services/api'
 import Notify from '../../Components/Notificacao/notify'
@@ -17,12 +17,12 @@ const ClientEdit: React.FC<ClienteViewModel> = (props) => {
     const [cliente, setCliente] = useState<ClienteViewModel>(Object);
     const [loadinbar, setLoadbar] = useState(false);
     const history = useHistory();
-    
-    // useEffect(() => {
-    //     // const { children } = props
-    //     console.log(props)
-    //   }, []);
-      console.log(props)
+    const location = useLocation<ClienteViewModel>();
+
+    useEffect(() => {
+        setCliente(location.state)
+    }, [location]);
+
     function ConsultaCEP(cep: string) {
         if (cep.replace("-", "").length == 8) {
             axios.viaCep.get(cep.replace("-", "") + '/json').then(response => {
@@ -31,7 +31,7 @@ const ClientEdit: React.FC<ClienteViewModel> = (props) => {
                     clienteCep: response.data.cep,
                     clienteRua: response.data.logradouro,
                     clienteBairro: response.data.bairro,
-                    clienteCidade : response.data.localidade,
+                    clienteCidade: response.data.localidade,
                     clienteEstado: response.data.uf
                 })
             }).catch(error => {
@@ -40,31 +40,51 @@ const ClientEdit: React.FC<ClienteViewModel> = (props) => {
         }
     }
 
+    function ClearCliente() {
+        setCliente({
+            id: 0,
+            clienteNome: '',
+            clienteCep: '',
+            clienteRua: '',
+            clienteNumero: '',
+            clienteBairro: '',
+            clienteEstado: '',
+            clienteCidade: '',
+            clienteEmail: '',
+            clienteTelefone: ''
+        });
+    }
+
     async function ClienteSaveOrEdit() {
         setLoadbar(true);
-        await Services.api.post('/Cliente/create', cliente)
-        .then(response => {            
-            Notify('success','Cliente salvo com sucesso!')         
-            setCliente({
-                id : 0,
-                clienteNome: '',
-                clienteCep: '',
-                clienteRua: '',
-                clienteNumero: '',
-                clienteBairro: '',
-                clienteEstado: '',
-                clienteCidade: '',
-                clienteEmail: '',
-                clienteTelefone: ''
-            });
-        }).catch(error => {
-            if(error.response.status == 401){
-                history.push('/');
-            }
-            else{
-                Notify('error',String(error.response.data.message))
-            }           
-        })
+        if (cliente.id == 0) {
+            await Services.api.post('/Cliente/create', cliente)
+                .then(response => {
+                    Notify('success', 'Cliente salvo com sucesso!')
+                    ClearCliente();
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        history.push('/');
+                    }
+                    else {
+                        Notify('error', String(error.response.data.message))
+                    }
+                })
+        }
+        else {
+            await Services.api.put('/Cliente/Update', cliente)
+                .then(response => {
+                    Notify('success', 'Cliente atualizado com sucesso!')
+                    ClearCliente();
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        history.push('/');
+                    }
+                    else {
+                        Notify('error', String(error.response.data.message))
+                    }
+                })
+        }
         setLoadbar(false);
     }
 
@@ -148,7 +168,7 @@ const ClientEdit: React.FC<ClienteViewModel> = (props) => {
                             onClick={() => ClienteSaveOrEdit()}
                         >
                             Salvar
-                                </Button>
+                        </Button>
                     </div>
                     <div className="loadin-bar">
                         {loadinbar && (<LinearProgress />)}

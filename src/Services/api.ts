@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    //baseURL: process.env.REACT_APP_API_URL,
-    baseURL: 'https://depositoapi.herokuapp.com/api/',
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
         common: {
             Authorization: localStorage.getItem('TOKEN')
@@ -16,7 +15,6 @@ const viaCep = axios.create({
 
 const login = axios.create({
     baseURL: process.env.REACT_APP_LOGIN_URL   
-    //baseURL: 'https://userlogin-api.herokuapp.com/'
 })
 
 export default { api, viaCep, login };
