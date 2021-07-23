@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import Services from '../../Services/api'
-import Notfy from '../../Components/Notificacao/notify'
+import Notify from '../../Components/Notificacao/notify'
 
 import { Paper, Toolbar, TextField, InputAdornment, TableContainer, Table, TableRow, TableCell, TableHead, TableSortLabel, TableBody, TablePagination, Button } from '@material-ui/core';
 import { Search } from '@material-ui/icons'
@@ -59,7 +59,7 @@ const ClientList: React.FC = () => {
                 history.push('/');
             }
             else{
-                Notfy('error',String(error.response.data.message))
+                Notify('error',String(error.response.data.message))
             }  
         })
     }
@@ -74,6 +74,7 @@ const ClientList: React.FC = () => {
 
     return (        
         <Paper className='funcionario_root'>
+            <Notify />
             <div className='Text-title'>
                 <label>Lista de Clientes</label>
             </div>
@@ -95,7 +96,6 @@ const ClientList: React.FC = () => {
                             variant="contained"
                             color="primary"
                             size="large"
-                            href="/clientedit"
                            onClick={() => ClienteNewOrEdit()}
                         >Novo Cliente</Button>
                     </div>

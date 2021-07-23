@@ -12,7 +12,7 @@ import {
     Container
 } from '@material-ui/core';
 
-const ClientEdit: React.FC<ClienteViewModel> = (props) => {
+const ClientEdit: React.FC = () => {
 
     const [cliente, setCliente] = useState<ClienteViewModel>(Object);
     const [loadinbar, setLoadbar] = useState(false);
@@ -20,7 +20,9 @@ const ClientEdit: React.FC<ClienteViewModel> = (props) => {
     const location = useLocation<ClienteViewModel>();
 
     useEffect(() => {
-        setCliente(location.state)
+        if (location.state !== undefined) {
+            setCliente(location.state)
+        }
     }, [location]);
 
     function ConsultaCEP(cep: string) {

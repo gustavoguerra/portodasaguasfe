@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
-
+import Services from '../../Services/api'
 import {
     Paper, Toolbar, TextField, InputAdornment, TableContainer, Table, TableRow, TableCell, TableHead, TableSortLabel, TableBody, TablePagination, Button,
     Icon,
     makeStyles
 } from '@material-ui/core';
 import { Search } from '@material-ui/icons'
+import { ProdutoViewModel } from '../../Model/IProdutoModel'
+import Notify from '../../Components/Notificacao/notify'
 import './product.css'
-
-import './product.css'
-
 
 
 const ProductList: React.FC = () => {
@@ -19,15 +18,14 @@ const ProductList: React.FC = () => {
         setPage(0);
         setRowsPerPage(10);
         getByFilter(0, 10);
+        GetAllClients();
     }, []);
 
-    const product = 0 // useSelector((state: StoreState) => state.product.dataByFilter);
-    const dispatch = null //useDispatch();
+    const [produto, setProduto] = React.useState<ProdutoViewModel[]>([])
     const totalrow = 0 //product == undefined ? 0 : product.totalItens
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const pages = [10, 25, 100]
-    const func = []
     const history = useHistory();
 
     const handleChangePage = (event: unknown, newPage: number) => {
@@ -49,18 +47,35 @@ const ProductList: React.FC = () => {
         // }))
     }
 
-    function ProductNewOrEdit() {
+
+    function ProdutoNew() {
         history.push('/productedit');
     }
 
-    return (
+    function ProdutoEdit(produto: ProdutoViewModel) {
 
-        <Paper className='product_root'>
+    }
+    async function GetAllClients() {
+        await Services.api.get<ProdutoViewModel[]>('/Produto/GetAll')
+            .then(response => {
+                setProduto(response.data);
+            }).catch(error => {
+                if (error.response.status == 401) {
+                    history.push('/');
+                }
+                else {
+                    Notify('error', String(error.response.data.message))
+                }
+            })
+    }
+
+    return (
+        <Paper className='funcionario_root'>
+            <Notify />
             <div className='Text-title'>
-                <label>Lista de Produtos</label>
+                <label>Lista de Produto</label>
             </div>
             <Toolbar>
-
                 <div className="Aline-Toolbar">
                     <div>
                         <TextField
@@ -78,37 +93,36 @@ const ProductList: React.FC = () => {
                             variant="contained"
                             color="primary"
                             size="large"
-                            href="/productedit"
-                            onClick={() => ProductNewOrEdit()}
+                            onClick={() => ProdutoNew()}
                         >Novo Produto</Button>
                     </div>
                 </div>
             </Toolbar>
 
-            <TableContainer className='product_container'>
+            <TableContainer className='funcionario_container'>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>
                             <TableCell><TableSortLabel>ID</TableSortLabel></TableCell>
-                            <TableCell>Descrição</TableCell>
+                            <TableCell>Nome do Produto</TableCell>
+                            <TableCell>Valor</TableCell>
+                            <TableCell>Status</TableCell>
                             <TableCell>Opções</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* {product?.listproduct.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                        <TableCell key={row.id}>{row.id}</TableCell>
-                                        <TableCell>{row.nome}</TableCell>
-                                        <TableCell>{row.rg}</TableCell>
-                                        <TableCell>{row.cnpj_cpf}</TableCell>
-                                        <TableCell>{row.telefone}</TableCell>
-                                        <TableCell>{row.email}</TableCell>
-                                        <TableCell>Ativo</TableCell>
-                                        <TableCell><button>Editar</button> | <button>Desativar</button></TableCell>
-                                    </TableRow>
-                                );
-                            })} */}
+                        {produto?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                            return (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                    <TableCell key={row.id}>{row.id}</TableCell>
+                                    <TableCell>{row.produtoNome}</TableCell>
+                                    <TableCell>{row.produtoValor}</TableCell>
+                                    <TableCell>{row.produtoAtivo}</TableCell>
+
+                                    <TableCell><Button color="primary" variant="contained" onClick={() => ProdutoEdit(row)}>Editar</Button></TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>
