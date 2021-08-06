@@ -53,6 +53,10 @@ const ProductList: React.FC = () => {
     }
 
     function ProdutoEdit(produto: ProdutoViewModel) {
+        history.push({
+            pathname: '/productedit',
+            state:  produto 
+        });
 
     }
     async function GetAllClients() {
@@ -116,8 +120,8 @@ const ProductList: React.FC = () => {
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     <TableCell key={row.id}>{row.id}</TableCell>
                                     <TableCell>{row.produtoNome}</TableCell>
-                                    <TableCell>{row.produtoValor}</TableCell>
-                                    <TableCell>{row.produtoAtivo}</TableCell>
+                                    <TableCell>R$ {row.produtoValor}</TableCell>
+                                    <TableCell>{row.produtoAtivo ? "ATIVO": "DESATIVADO"}</TableCell>
 
                                     <TableCell><Button color="primary" variant="contained" onClick={() => ProdutoEdit(row)}>Editar</Button></TableCell>
                                 </TableRow>

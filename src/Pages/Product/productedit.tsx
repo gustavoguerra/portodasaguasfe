@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom';
 import Notify from '../../Components/Notificacao/notify'
 import axios from '../../Services/api'
 import InputField from '../../Components/Objects/InputField/inputfield'
+
 import {
     Button,
     LinearProgress,
@@ -13,7 +14,6 @@ import {
     Grid
 } from '@material-ui/core';
 import { ProdutoViewModel } from '../../Model/IProdutoModel'
-
 
 const ProductEdit: React.FC = () => {
 
@@ -50,27 +50,49 @@ const ProductEdit: React.FC = () => {
         },
         checked: {},
     }))(Switch);
-    const [Produto, setProduto] = useState<ProdutoViewModel>(Object);
+
+    const [Produto, setProduto] = useState<ProdutoViewModel>({} as ProdutoViewModel);
     const [loadinbar, setLoadbar] = useState(false);
     const location = useLocation<ProdutoViewModel>();
     const history = useHistory();
 
+    const hendleChange = useCallback((e: FormEvent<HTMLInputElement>) => {
+        let valor = e.currentTarget.value
+
+        if (e.currentTarget.name == 'produtoValor') {
+            valor = valor.replace(/\D/g, "");
+            valor = valor.replace(/(\d)(\d{2})$/, "$1.$2");
+        }
+
+        setProduto({
+            ...Produto,
+            [e.currentTarget.name]: valor
+        })
+    }, [Produto]);
+
+
     useEffect(() => {
+        console.log(location.state)
         if (location.state !== undefined) {
-            setProduto(location.state)
+            setProduto({ 
+                id: location.state.id, 
+                produtoNome: location.state.produtoNome,
+                produtoValor: "0,00",
+                produtoAtivo: location.state.produtoAtivo
+            })
         }
     }, [location]);
 
     function ClearProduto() {
-        
-    }
-    async function ProdutoSaveOrUpdate() {
 
+    }
+
+    async function ProdutoSaveOrUpdate() {
         setLoadbar(true);
-        if (Produto.id == 0) {
+        if (Produto.id === 0 || Produto.id === undefined) {
             await axios.api.post('/Produto/create', Produto)
                 .then(response => {
-                    Notify('success', 'Cliente salvo com sucesso!')
+                    Notify('success', 'Produto salvo com sucesso!')
                     ClearProduto();
                 }).catch(error => {
                     if (error.response.status == 401) {
@@ -84,7 +106,7 @@ const ProductEdit: React.FC = () => {
         else {
             await axios.api.put('/Produto/Update', Produto)
                 .then(response => {
-                    Notify('success', 'Cliente atualizado com sucesso!')
+                    Notify('success', 'Produto atualizado com sucesso!')
                     ClearProduto();
                 }).catch(error => {
                     if (error.response.status == 401) {
@@ -110,17 +132,21 @@ const ProductEdit: React.FC = () => {
                     <InputField
                         Required
                         RequiredText="Nome Produto Obrigarotorio"
-                        name="Produto"
+                        Cabname="Nome"
+                        name="produtoNome"
                         mask="TEXT"
                         value={Produto.produtoNome}
-                        onChange={e => setProduto({ ...Produto, produtoNome: e.currentTarget.value })} />
+                        onChange={hendleChange}
+                    />
                     <InputField
                         Required
                         RequiredText="Valor Obrigatorio"
-                        name="Valor"
+                        name="produtoValor"
+                        Cabname="Valor"
                         mask="REALCURRENCY"
                         value={Produto.produtoValor}
-                        onChange={e => setProduto({ ...Produto, produtoValor: e.currentTarget.value })} />
+                        onChange={hendleChange}
+                    />
 
                     <Typography component="div">
                         <Grid component="label" container alignItems="center" spacing={1}>

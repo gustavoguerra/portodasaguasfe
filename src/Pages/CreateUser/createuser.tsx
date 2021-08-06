@@ -99,42 +99,49 @@ const CreateUser: React.FC = () => {
                             Required
                             RequiredText="Nome Obrigarotorio"
                             name="Nome"
+                            Cabname="Nome"
                             mask="TEXT"
                             onChange={e => setItems({ ...items, firstName: e.currentTarget.value })} />
                         <InputField
                             Required
                             RequiredText="Sobrenome Obrigarotorio"
                             name="Sobrenome"
+                            Cabname="Sobrenome"
                             mask="TEXT"
                             onChange={e => setItems({ ...items, lastName: e.currentTarget.value })} />
                         <InputField
                             Required
                             RequiredText="CPF Obrigarotorio"
                             name="CPF"
+                            Cabname="CPF"
                             mask="CPF"
                             onChange={e => setItems({ ...items, socialNumber: e.currentTarget.value })} />
                         <InputField
                             Required
                             RequiredText="Celular Obrigarotorio"
                             name="Celular"
+                            Cabname="Celular"
                             mask="CELLPHONE"
                             onChange={e => setItems({ ...items, cellPhoneNumber: e.currentTarget.value })} />
                         <InputField
                             Required
                             RequiredText="Email Obrigarotorio"
                             name="Email"
+                            Cabname="Email"
                             mask="TEXT"
                             onChange={e => setItems({ ...items, email: e.currentTarget.value })} />
                         <InputField
                             Required
                             RequiredText="Password Obrigarotorio"
                             name="Password"
+                            Cabname="Password"
                             type="password"
                             mask="TEXT"
                             onChange={e => setItems({ ...items, userPassword: e.currentTarget.value })} />
                         <InputField
                             Required
                             name="Confirm Password"
+                            Cabname="Password"
                             type="password"
                             mask="TEXT"
                             onBlur={e => VeridicaPassword(e.currentTarget.value)} />

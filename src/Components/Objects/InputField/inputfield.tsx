@@ -5,7 +5,7 @@ import '../InputField/inputfield.css'
 
 
 
-const InputField: React.FC<maskProps.InputProps> = ({ Required = false, RequiredText, name, value, mask, ...props }) => {
+const InputField: React.FC<maskProps.InputProps> = ({ Required = false, RequiredText, Cabname, mask, ...props }) => {
 
     const [prefix, setPrefix] = useState("");
     const [enableRequiredText, setEnable] = useState(false);
@@ -22,7 +22,7 @@ const InputField: React.FC<maskProps.InputProps> = ({ Required = false, Required
                 setPrefix("€")
                 break;
         }
-    }, [])
+    }, [mask])
 
     const handleKeyup = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         switch (mask) {
@@ -47,7 +47,7 @@ const InputField: React.FC<maskProps.InputProps> = ({ Required = false, Required
             case 'DATA':
                 return maskProps.data(e)
         }
-    }, [])
+    }, [mask])
 
     const checkRequired = (e: React.FormEvent<HTMLInputElement>) => {
         if (Required && StringisNullOrEmpity(e.currentTarget.value)) {
@@ -68,13 +68,13 @@ const InputField: React.FC<maskProps.InputProps> = ({ Required = false, Required
                         {...props}
                         placeholder=" "
                         className="input1"
-                        value={value}
                         onKeyUp={handleKeyup}
                         onBlur={checkRequired}
                         onClick={removeRequiredText}
-                        required={!enableRequiredText} />
+                        required={!enableRequiredText}
+                    />
                     <label className="label1">
-                        {name}
+                        {Cabname}
                         <span className="span1" hidden={!Required}> *</span>
                     </label>
                     <fieldset className="fieldset1">

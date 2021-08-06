@@ -38,6 +38,8 @@ const ClientList: React.FC = () => {
         getByFilter(page, +event.target.value);
     };
 
+
+
     function getByFilter(nPage: number, nRowsPage: number) {
         // dispatch(funcionarioRequestByFilter({
         //     page: nPage + 1,

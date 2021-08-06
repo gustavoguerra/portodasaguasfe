@@ -99,67 +99,76 @@ const ClientEdit: React.FC = () => {
                 </div>
 
                 <form noValidate>
-                    <InputField
+                    <InputField                        
                         Required
                         RequiredText="Nome Obrigarotorio"
                         name="Nome"
+                        Cabname="Nome"
                         mask="TEXT"
                         value={cliente.clienteNome}
-                        onChange={e => setCliente({ ...cliente, clienteNome: e.currentTarget.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteNome: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="CEP Obrigarotorio"
                         name="CEP"
+                        Cabname="CEP"
                         mask="CEP"
                         value={cliente.clienteCep}
-                        onChange={e => ConsultaCEP(e.currentTarget.value)} />
+                        onKeyUp={e => ConsultaCEP(e.currentTarget.value)} />
                     <InputField
                         Required
                         RequiredText="Rua Obrigatorio"
                         name="Rua"
+                        Cabname="Rua"
                         mask="TEXT"
                         value={cliente.clienteRua}
-                        onChange={e => setCliente({ ...cliente, clienteRua: e.currentTarget.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteRua: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="Numero Obrigarotorio"
                         name="Numero"
+                        Cabname="Numero"
                         mask="TEXT"
                         value={cliente.clienteNumero}
-                        onChange={e => setCliente({ ...cliente, clienteNumero: e.currentTarget.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteNumero: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="Bairro Obrigatorio"
                         name="Bairro"
+                        Cabname="Bairro"
                         mask="TEXT"
                         value={cliente.clienteBairro}
-                        onChange={e => setCliente({ ...cliente, clienteBairro: e.currentTarget.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteBairro: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="Cidade Obrigarotorio"
                         name="Cidade"
+                        Cabname="Cidade"
                         mask="TEXT"
                         value={cliente.clienteCidade}
-                        onChange={e => setCliente({ ...cliente, clienteCidade: e.currentTarget.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteCidade: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="Estado Obrigarotorio"
                         name="Estado"
+                        Cabname="Estado"
                         mask="TEXT"
                         value={cliente.clienteEstado}
-                        onChange={e => setCliente({ ...cliente, clienteEstado: e.target.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteEstado: e.currentTarget.value })} />
                     <InputField
                         Required
                         RequiredText="Telefone Obrigarotorio"
                         name="Telefone"
+                        Cabname="Telefone"
                         mask="CELLPHONE"
                         value={cliente.clienteTelefone}
-                        onChange={e => setCliente({ ...cliente, clienteTelefone: e.target.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteTelefone: e.currentTarget.value })} />
                     <InputField
                         name="Email"
+                        Cabname="Email"
                         mask="TEXT"
                         value={cliente.clienteEmail}
-                        onChange={e => setCliente({ ...cliente, clienteEmail: e.target.value })} />
+                        onKeyUp={e => setCliente({ ...cliente, clienteEmail: e.currentTarget.value })} />
 
                     <div className="button-stayle">
                         <Button
